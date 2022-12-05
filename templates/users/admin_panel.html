@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}dashboard{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/admin_panel.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});"></body>
+    <div>
+        <p class="admin_detail">Hello : {{ user }} !</p>
+    </div>
+    <div class="Wrap">
+        <div>
+            <a class="add_product" href="{% url 'add_product' %}"><i class="fa fa-plus fa-3x"></i></a>
+            <div class="products_container">
+                {% for product in products %}
+                    <div class="products_wrap">
+                        <img class="products_image" src="{{ MEDIA_URL }}{{ product.main_image }}">
+                        <span class="products_name">{{ product.name|safe }}</span>
+                        <button class="delete_btn" value="{{ product.product_id|safe }}">delete</button>
+                        <a class="edit_btn edit_link" href="{% url 'admin_panel_edit' product.product_id %}">edit</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="coupons_container">
+            <a class="add_coupon" href="{% url 'add_coupon'%}"><i class="fa fa-plus fa-3x"></i></a>
+            <div class="all_coupons_wrap">
+                {% for c in coupons %}
+                    <div class="coupons_wrap">
+                        <span class="coupon_code">code : {{ c.coupon_code }}</span>
+                        <span class="coupon_code">num of use : {{ c.valid_num_of_use }}</span>
+                        <span class="coupon_code">percent : {{ c.percent }}%</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'view_all_orders' %}" class="view_all_orders">view all orders</a>
+    </div>
+</body>  
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>
+<script src='{%  static  "js/users/admin_panel.js"  %}'></script>
+{% endblock %}

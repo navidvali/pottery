@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}pottery{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/set_order.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+    <div class="Wrap">
+        <div class="order_summary">
+            <p class="name">order will be sent in the name: {{ users_order_details.user }}</p>
+            <p class="method">payment method: {{ users_order_details.payment_method }}</p>
+            <p class="status">payment status: {{ users_order_details.payment_stat }}</p>
+            <p class="address">address: {{ address }}</p>
+        </div>
+        <div class="extra_detail">
+            <div class="coupon_wrap">
+                <label for="coupon" class="label">add coupon:</label>
+                <input type="text" name="coupon" maxlength="20" id="coupon" class="coupon-input">
+                <div class="submit_button" id="submit_button">Submit</div>
+                <span class="total">total = <b id="total">{{ users_order_details.total }}</b>$</span>
+                <div class="cancel_coupon" id="cancel_coupon"><i class="fa fa-times fa-2x"></i></div>
+            </div>
+            <div class="des_wrap">
+                <label for="id_description" class="label">Description:</label>
+                <textarea rows="4" cols="50" name="description" maxlength="255" id="id_description" class="des_input" style="resize: none;"></textarea>
+            </div>
+            <div class="products_wrap">
+                 <p>products in order:</p>
+                {% for i in users_order_products %}
+                    <span class="product">{{ i.product.name }}</span>,
+                {% endfor %}
+            </div>
+        </div>
+        <div class="final">
+            <span id="order_id_wrap">order id = <span id="order_id">{{ order }}</span></span>
+            <a href="{% url 'delete_ongoing_order' order %}" class="cancel">cancel order<i class="fa fa-trash space"></i></a>
+            <div class="finish" id="finish">
+                {% if  users_order_details.payment_method == "online" %}
+                    pay online
+                {% else %}
+                    send shipment
+                {% endif %}
+                <i class="fa fa-shopping-cart space"></i>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>
+<script src='{%  static  "js/users/set_order.js"  %}'></script>
+{% endblock %}

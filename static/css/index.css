@@ -1,0 +1,78 @@
+
+.box-1 {
+  line-height: 150px;
+  text-align: center;
+  vertical-align: center;
+  background-image: url("/images/wall.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  width: auto;
+  height: 150px;
+}
+
+.head-1 {
+  margin: 0;
+  color: #382819;
+  font-size: 60px;
+}
+
+.box-2 {
+  background: cadetblue;
+  width: auto;
+  height: 600px;
+}
+
+.head-2,
+.text-2 {
+  float: left;
+  box-sizing: border-box;
+  width: 50%;
+}
+.head-2 {
+  padding-left: 30px;
+  padding-top: 40px;
+  color: rgb(218, 200, 188);
+  font-size: 40px;
+}
+
+.text-2 {
+  padding-left: 40px;
+  padding-top: 15px;
+  color: rgb(197, 177, 163);
+  font-size: 25px;
+}
+
+.pic-2 {
+  float: right;
+  width: 45%;
+  height: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+}
+
+.box-3 {
+  background: rgb(46, 46, 46);
+  width: auto;
+  height: 120px;
+}
+
+.text-3 {
+  margin-top: 0%;
+  padding-top: 3%;
+  text-decoration: none;
+  font-style: none;
+  color: seashell;
+}
+
+.last_text {
+  text-decoration: none;
+  color: seashell;
+  padding-left: 44%;
+}
+
+.last-line {
+  margin-top: 0%;
+  padding-top: 2%;
+  padding-left: 43%;
+}

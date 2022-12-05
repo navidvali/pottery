@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}pottery{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/cart.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+    <div class="top">
+        {{ error }}
+        <h1 class="topic">IN CART</h1>
+        {% if has_ordered %}
+            <a href="{% url 'set_order' ongoing_order_id %}" class="continue_order">continue order</a>
+        {% endif %}
+    </div>
+    <div class="cart">
+        <span id="no_order">No products ordered yet!</span>
+        <div class="products_container" id="products_container">
+            <div class="extra_wrap">
+                {% for productuser in products_in_cart %}
+                    <div class="products_wrap">
+                        <img class="products_image" src="{{ MEDIA_URL }}{{ productuser.product.main_image }}">
+                        <span class="products_name">{{ productuser.product.name|safe }}</span>
+                        <!-- <div class="num_of_product">number: {{ productuser.number|safe }}</div> -->
+                        <span class="price">{{ productuser.product.price }}$</span>
+                        <div title="{{ productuser.product.price }}" class="delete_btn" id="{{ productuser.UserProduct_Cart }}"><i class="fa fa-trash fa-2x"></i></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="user_details">
+            <div>
+                <div class="address_wrap">
+                    <p class="address">shipment will be sent to : {{ users_address }}</p><a class="edit_address" href="{% url 'edit_address' %}"><i class="fa fa-edit fa-2x"></i></a>
+                </div>
+                <p class="text_1">Choose payment method:</p>
+<!--                <form action="/users/set_pre_order/" method="POST" enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+                    <span class="total">total = <b id="total">{{ total_price }}</b>$</span>
+                    <div class="payment_method">
+                        <div class="payment_type_wrap">
+                            <input type="radio" name="payment_method" value="online" checked class="pay_online" id="online">
+                            <img class="pic_1" src="{% static 'images/online_payment.jpg' %}" alt="pic of globe" />
+                            <span class="online_text">pay online</span>
+                        </div>
+                        <div class="payment_type_wrap">
+                            <input type="radio" name="payment_method" value="on_delivery" class="pay_on_delivery" id="on_delivery">
+                            <img class="pic_2" src="{% static 'images/on_delivery_payment.jpg' %}" alt="pic of delivery service" />
+                            <span class="delivery_text">pay on delivery</span>
+                        </div>
+                    </div>
+<!--                </form>-->
+                <div class="messageWrap">
+                    {% if products_in_cart %}
+                        {% if has_ordered %}
+                            <span id="messages">you can only have one ongoing order</span>
+                        {% else %}
+                            <button id="sub_button" type="submit" class="purchase">continue</button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>
+<script src='{%  static  "js/users/cart.js"  %}'></script>
+{% endblock %}

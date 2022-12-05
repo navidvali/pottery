@@ -1,0 +1,151 @@
+.extra_detail{
+    width: 650px;
+}
+
+.coupon_wrap{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.label{
+    font-size: 20px;
+    margin: 0 10px 0 0;
+}
+
+.coupon-input{
+    font-size: 24px;
+    width: 200px;
+    height: 30px;
+    margin: 0 10px 0 0;
+}
+
+.submit_button{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color:  #5F9EA0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total{
+    display: block;
+    margin: 0 0 0 10px;
+    font-size: 20px;
+}
+
+.Wrap{
+    margin: 40px;
+    width: auto;
+    height: 500px;
+    background-color: #ffe9c0;
+    display: flex;
+    border-radius: 30px;
+}
+
+.order_summary{
+    width: 40%;
+    height: inherit;
+    background: #5f9ea0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+.address,
+.method,
+.status,
+.name{
+    width: 400px;
+    height: 50px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.status{
+    color: red;
+}
+
+.address{
+    height: 200px;
+    word-wrap: break-word;
+    display: inline-block;
+    padding: 10px;
+}
+
+.des_wrap{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.des_input{
+    resize: none;
+    height: 150px;
+    width: 500px;
+}
+
+.products_wrap{
+    margin: 30px;
+}
+
+.finish,
+.cancel{
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.finish{
+    color: white;
+    background-color: #5f9ea0;
+}
+
+.cancel{
+    color: white;
+    background-color: #4d3434;
+    text-decoration: none;
+}
+
+.final{
+   margin: auto 0 0 0;
+}
+
+.space{
+    margin: 0 0 0 5px;
+}
+
+.error,
+.coupon_used{
+    position: relative;
+    font-size: 20px;
+}
+
+.cancel_coupon{
+    display: none;
+    color: #c22424;
+    margin: 0 0 0 10px;
+    cursor: pointer;
+}
+
+#order_id_wrap{
+    display: inline-block;
+    margin: 0 0 0 10px;
+}

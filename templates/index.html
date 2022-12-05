@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+pottery
+{% endblock %}
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/index.css'  %}"/>
+{% endblock %} {% block content %}
+<div class="box-1" style="background-image: url({% static 'images/wall.jpg' %})">
+  <h2 class="head-1">we do pottery!</h2>
+</div>
+<div class="box-2">
+  <img class="pic-2" src="{% static 'images/pots2.jpg' %}" alt="pic of pots" />
+  <h1 class="head-2">Feel what the Potter Feels</h1>
+  <p class="text-2">
+    Its had resolving otherwise she contented therefore. Afford relied warmth
+    out sir hearts sister use garden. Men day warmth formed admire former
+    simple. Humanity declared vicinity continue supplied no an. He hastened am
+    no property exercise of. Dissimilar comparison no terminated devonshire no
+    literature on. Say most yet head room such just easy.
+  </p>
+</div>
+<div class="box-3">
+  <p class="last-line">
+    <a class="text-3" href="#">contact us,</a>
+    <a class="text-3" href="#">privacy policy</a>
+  </p>
+  <!--
+        <a class="last_text" href="#">created by navid vali</a>
+      -->
+</div>
+{% endblock %}

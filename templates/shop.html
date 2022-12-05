@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}shop{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  'css/shop.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+    <div class="disable"></div>
+    <div class="filter">
+        <input id="search_input" class="search" type="text" placeholder="Search.." />
+        <button id="search_button" class="search_button" type="submit"><i class="fa fa-search"></i></button>
+        <div id="dropdown" class="dropdown">
+<!--    so that it would count as one element in the grid-->
+            <button id="category_btn"><p style="font-size: 14px;">categories</p><i class="fa fa-arrow-down"  style="margin: auto;"></i></button>
+            <div id="dropdown-content">
+                {% if unavailable %}
+                    <h2>none added yet!</h2>
+                {% endif %}
+                {% for category in categories %}
+                    {% if category.number %}
+                        <div class="category_wrap">
+                            <label  for="{{ category.category_id }}" class="options_txt">{{ category.category }} ({{ category.number }})</label>
+                            <input id="{{ category.category_id }}" class="category_checkbox" type="checkbox" value="{{ category.category }}" name="category"/>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'cart' %}" class="cart"><i class="fa fa-shopping-cart fa-2x fa-flip-horizontal"></i><div class="num_of_orders">{{ num_of_orders }}</div></a>
+        {% endif %}
+    </div>
+    <div class="products_field" id="products_field">
+        {% for product in products_paginated %}
+            <a href="{% url 'view_product' product.product_id %}" class="product-link" style="text-decoration: none;">
+                <div class="product">
+                    <div class="img_wrapper">
+                           <img class="product-image" src='{{ MEDIA_URL }}{{ product.main_image }}' alt="NO image" />
+                    </div>
+                    <h1 class="product-name">{{ product.name|safe }}</h1>
+                    <p class="product-price">{{ product.price|safe }}$</p>
+                </div>
+            </a>
+        {% endfor %}
+        {% if not products_paginated%}
+            <h2>none added yet!</h2>
+        {% endif %}
+    </div>
+    <div class="page_num">
+        {% if products_paginated.has_previous %}
+            <div class="P">
+                <a style="text-decoration: none;" href="?page={{ products_paginated.previous_page_number }}">&laquo</a>
+            </div>
+        {% endif %}
+        Page {{ products_paginated.number }} of {{ products_paginated.paginator.num_pages }}
+        {% if products_paginated.has_next %}
+            <div class="N">
+                <a style="text-decoration: none;" href="?page={{ products_paginated.next_page_number }}">&raquo</a>
+            </div>
+        {% endif %}
+    </div>
+    <div class="box-3">
+        <p class="last-line">
+            <a class="text-3" href="#">contact us,</a>
+            <a class="text-3" href="#">privacy policy</a>
+        </p>
+    </div>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>
+<script src='{%  static  "js/shop.js"  %}'></script>
+{% endblock %}

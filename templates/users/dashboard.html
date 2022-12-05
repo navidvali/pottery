@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}dashboard{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/dashboard.css'  %}" />
+{% endblock %}
+{% block content %}
+<div class="username">{{ user }}</div>
+<div class="orders">orders</div>
+<div class="profile_details">profile</div>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/users/dashboard.js"  %}'></script>
+<!--<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>-->
+{% endblock %}

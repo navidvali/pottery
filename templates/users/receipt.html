@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}pottery{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/receipt.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+<div class="Wrap">
+    <div class="delivered_orders_wrap">
+        <p class="title">delivered orders :</p>
+        <div class="grid_orders_wrap">
+            {% for p in users_delivered_orders %}
+                <div class="receipt_wrap">
+                    <span>order id: {{ p.order }}</span><br>
+                    <span>total: {{ p.total }}</span><br>
+                    <span>payment method: {{ p.payment_method }}</span><br>
+                    <span>payment status: {{ p.payment_stat }}</span><br>
+                    <span>order status: {{ p.order_stat }}</span><br>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="in_line_orders_wrap">
+        <p class="title">in line orders :</p>
+        <div class="grid_orders_wrap">
+            {% for p in users_in_line_orders %}
+                <div class="receipt_wrap">
+                    <span>order_id: {{ p.order }}</span><br>
+                    <span>total: {{ p.total }}</span><br>
+                    <span>payment method: {{ p.payment_method }}</span><br>
+                    <span>payment status: {{ p.payment_stat }}</span><br>
+                    <span>order status: {{ p.order_stat }}</span><br>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+{% block js %}
+<!--<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>-->
+{% endblock %}

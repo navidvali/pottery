@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}add product{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href='{%  static  "css/add_product.css"  %}' />
+{% endblock %}
+
+{% block content %}
+<body style="background-image: url({% static 'images/Icon_grid.svg' %});">
+    <a class="back_btn" href="{% url 'admin_panel' %}"><i class="fa fa-arrow-left fa-2x"></i>back to panel</a>
+    <form action="/shop/add_product/" method="POST" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <p>{{ error }}</p>
+        <div class="left">
+            <div class="field">
+                <label for="id_name" class="label">Name:</label>
+                <input type="text" name="name" maxlength="50" required="" id="id_name" class="text_field name_field">
+            </div>
+            <div class="field">
+                <label for="id_description" class="label">Description:</label>
+                <textarea rows="4" cols="50" name="description" maxlength="255" required="" id="id_description" class="text_field"></textarea>
+            </div>
+            <div class="field">
+                <label for="id_price" class="label">Price:</label>
+                <input type="number" name="price" value="0.0" step="0.01" min="0.0" required="" id="id_price" class="number_field">
+            </div>
+            <div class="field">
+                <label class="label">Categorys:</label>
+                <div id="cat_div">
+                    <div class="limit_wrap">
+                        <div class="select_cat" id="select"><!-- red -->
+                            <select class="text_field select_cat">
+                            </select>
+                            <div class="overSelect"></div>
+                        </div>
+                        <div id="checkboxes"><!-- red -->
+                            {% if unavailable %}
+                                <h2 id="available">none added yet!</h2>
+                            {% endif %}
+                            {% for category in added_categorys %}
+                            <div class="options">
+                                <label  class="options_txt" style="font-size: 16px;">{{ category.category }}</label>
+                                <input type="checkbox" class="checkbox_cat" value="{{ category.category }}" name="category"/>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <input type="text" maxlength="20" id="new_option" class="text_field new_option" placeholder="type here ...">
+                    <div id="add_category"><i class="fa fa-plus fa-2x"></i></div>
+                </div>
+            </div>
+            <input type="submit" class="submit_button">
+        </div>
+        <div class="right">
+            <div class="field">
+                <input accept="image/*" type="file" name="main_image" required="" id="id_main_image" class="file_field" style="opacity: 0;">
+                <div class="main_image_preview">
+                    <div id="cancel-btn"><i class="fa fa-times fa-2x"></i></div>
+                    <img src="" alt=" " class="main_preview_img" style="opacity: 0;">
+                    <span class="main_preview_span">Choose image</span>
+                </div>
+            </div>
+            <div class="field">
+                <div class="extra_image_preview">
+                    <div class="after_upload">
+                        <h class="note1">files Uploaded!</h>
+                        <div id="cancel-btn2"><i class="fa fa-times fa-2x"></i></div>
+                        <div class="images_container">
+                        </div>
+                    </div>
+                    <div class="before_upload">
+                        <input accept="image/*" type="file" multiple name="image" id="id_image" required class="file_field" style="opacity: 0;">
+                        <span class="extra_preview_span">add extra images  <i class="fa fa-plus fa-2x" style="vertical-align: sub;"></i></span>
+                    </div>
+                </div>
+                <h class="note">you can upload multiple files in this section</h>
+            </div>
+        </div>
+    </form>
+</body>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/add_product.js"  %}'></script>
+{% endblock %}
+

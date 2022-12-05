@@ -1,0 +1,110 @@
+.products_container{
+    width: fit-content;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.products_wrap{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 600px;
+}
+
+.products_image{
+    width: 100px;
+    height: 100px;
+}
+
+.products_name{
+    font-size: 20px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.delete_btn{
+    background-color: rgb(202, 36, 36);
+    border-radius: 10px;
+    border: 0;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.edit_btn{
+    background: #5F9EA0;
+    border-radius: 10px;
+    border: 0;
+    width: 100px;
+    height: 50px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.add_product{
+    color: black;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 600px;
+}
+
+.Wrap{
+   display: flex;
+}
+
+.coupons_container{
+    margin: 20px 20px 0 0;
+}
+
+.view_all_orders,
+.add_coupon{
+    height: 100px;
+    width: 200px;
+    color: black;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px 20px 20px;
+}
+
+.all_coupons_wrap{
+    width: fit-content;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.coupons_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    height: 80px;
+    margin: 20px;
+    background-color: antiquewhite;
+    overflow: auto;
+}
+
+.view_all_orders{
+    margin: 20px 0 0 0;
+}

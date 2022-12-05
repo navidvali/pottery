@@ -1,0 +1,64 @@
+.back_btn{
+    margin: 30px 0 10px 100px;
+    color: black;
+    text-decoration: none;
+    gap: 5px;
+    display: flex;
+    background: rgb(65 185 199);
+    border-radius: 10px;
+    border: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+}
+
+.form{
+    background-color: RGB(255, 233, 192);
+    width: 900px;
+    height: 100px;
+    margin: 10px auto 0 auto;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 60px 40px;
+}
+
+.wrap{
+    display: flex;
+}
+
+.one{
+    grid-column: 1 / 2;
+    grid-row: 1;
+    place-self: center;
+}
+
+.two{
+    grid-column: 2 / 3;
+    grid-row: 1;
+    place-self: center;
+}
+
+.three{
+    grid-column: 3 / 4;
+    grid-row: 1;
+    place-self: center;
+}
+
+.four{
+    margin:  0 30px 10px auto;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    place-self: center;
+    color: black;
+    display: flex;
+    background: rgb(65 185 199);
+    border-radius: 10px;
+    border: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+}

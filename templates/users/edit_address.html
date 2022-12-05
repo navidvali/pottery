@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="pottery, market, potter" />
+    <meta
+      name="description"
+      content="A field of clay touched by the genius of man becomes a castle"
+    />
+    <link rel="stylesheet" type="text/css" href="{%  static  '/css/users/login.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{%  static  '/css/users/edit_address.css'  %}" />
+    <title>login</title>
+    <link rel="stylesheet" href='{%  static  "font-awesome/css/font-awesome.min.css"  %}'>
+</head>
+<body>
+    <div class="bg"></div>
+        <div class="wrap">
+            <div class="form_wrap">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p class="error">{{ error|escape }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                            <p class="error">{{ error|escape }}</p>
+                    {% endfor %}
+                {% endif %}
+                you are logged in as {{ user }}
+                <form action="/users/edit_address/" method="POST" enctype="multipart/form-data" class="form">
+                    {% csrf_token %}
+                        <label for="address" class="label">new adderess:</label><br>
+                        <textarea rows="4" cols="50" name="address" maxlength="255" required="" id="address" class="address_input"></textarea>
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <input type="submit" class="submit_button">
+                </form>
+                <div class="links_wrap">
+                    <a href="{% url 'cart' %}" class="link">return</a><br>
+                </div>
+            </div>
+            <img src="{{ static }}/static/images/pots.jpg" alt="cups" class="image">
+        </div>
+</body>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}dashboard{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/view_all_orders.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});"></body>
+<a class="back_btn" href="{% url 'admin_panel' %}"><i class="fa fa-arrow-left fa-2x"></i>back to panel</a>
+<div class="Wrap">
+    {% for o in orders %}
+        <div class="orders_wrap">
+            <div class="area1">
+                <p class="short_field"><b>user:</b> {{ o.user }}</p>
+                <p class="short_field"><b>payment stat:</b> {{ o.payment_stat }}</p>
+                <p class="short_field"><b>total:</b> {{ o.total }}</p>
+                <p class="short_field"><b>order stat:</b> {{ o.order_stat }}</p>
+                <p class="short_field"><b>created on:</b> {{ o.created_on }}</p>
+            </div>
+            <div class="area2">
+                <p class="long_field"><b>address:</b> {{ o.address }}</p>
+                <p class="long_field"><b>description:</b> {{ o.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    <div class="page_num">
+    {% if orders.has_previous %}
+        <div class="P">
+            <a style="text-decoration: none;" href="?page={{ orders.previous_page_number }}">&laquo</a>
+        </div>
+    {% endif %}
+    Page {{ orders.number }} of {{ orders.paginator.num_pages }}
+    {% if orders.has_next %}
+        <div class="N">
+            <a style="text-decoration: none;" href="?page={{ orders.next_page_number }}">&raquo</a>
+        </div>
+    {% endif %}
+</div>
+</body>
+{% endblock %}
+{% block js %}
+<script src='{%  static  "js/jquery-3.6.0.min.js"  %}'></script>
+{% endblock %}

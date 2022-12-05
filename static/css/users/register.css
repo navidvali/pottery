@@ -1,0 +1,14 @@
+.box{
+    position: static;
+    margin-top: 10px;
+}
+
+.address_input{
+    display: inline-block;
+    height: 150px;
+    resize: none;
+}
+
+.submit_button{
+    bottom: 35px;
+}

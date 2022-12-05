@@ -1,0 +1,65 @@
+.Wrap{
+    width: 1400px;
+    display: grid;
+    grid-template-columns: 700px 700px;
+    margin: 0 auto 0 auto;
+}
+
+.orders_wrap{
+    background-color: RGB(250, 235, 215);
+    border-radius: 30px;
+    height: 200px;
+    display: flex;
+    margin: 30px 10px;
+    padding: 10px;
+}
+
+
+.long_field,
+.short_field{
+    overflow: auto;
+    margin: 0;
+}
+
+.long_field{
+    height: 75px;
+    width: 350px;
+    word-wrap: break-word;
+}
+
+.short_field{
+    height: 40px;
+    width: 300px;
+}
+
+
+.page_num {
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.P,
+.N{
+    margin: 0 10px 0 10px;
+}
+
+.back_btn{
+    margin: 20px 0 0 30px;
+    color: black;
+    text-decoration: none;
+    gap: 5px;
+    display: flex;
+    background: rgb(65 185 199);
+    border-radius: 10px;
+    border: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+}
