@@ -17,5 +17,5 @@ class AccountDetailsForm(ModelForm):
 class CouponsForm(ModelForm):
     class Meta:
         model = Coupons
-        fields = ['coupon_code', 'valid_num_of_use', 'percent',]
+        fields = ['coupon_code', 'percent']
 

@@ -56,44 +56,95 @@ document.querySelectorAll('.category_checkbox').forEach(item => {
   })
 })
 
-const searchButton = document.getElementById('search_button');
 
-searchButton.addEventListener("click", function(){
 
+var delayTimer;
+$("#search_input").keyup(function(){
+    clearTimeout(delayTimer);
+    let searchInput = document.getElementById('search_input').value
+    if (searchInput){
+        $("#loading_message_wrap").text("Loading...")
+    }
     var notFoundText = document.getElementById("not_found_text")
     if(notFoundText){
         notFoundText.remove()
     }
-    let searchInput = document.getElementById('search_input').value
-    searchInput = searchInput.replace(/^\s+/, '').replace(/\s+$/, '');
 
-    if (searchInput) {
-        $.ajax ({
-            Type: 'GET',
-            url: "/shop/search_product",
-            data : {"searchInput":searchInput},
-            success: function (response) {
-                if(response.product[0]){
-                    console.log(response.product)
-                    var product = document.getElementsByClassName('product-link')[0];
-                    $("#products_field").empty()
-                    $(".page_num").remove()
-                    for(var i in response.product){
-                        var clone = product.cloneNode(true);
-                        clone.href = "/shop/view_product/" + response.product[i].product_id;
-                        console.log(response.product[i].name)
-                        clone.getElementsByClassName("product-name")[0].innerHTML = response.product[i].name;
-                        clone.getElementsByClassName("product-price")[0].innerHTML = response.product[i].price + "$";
-                        clone.getElementsByClassName("product-image")[0].src = "/media/" + response.product[i].main_image;
-                        $("#products_field").append(clone)
+    delayTimer = setTimeout(function(){
+        searchInput = searchInput.replace(/^\s+/, '').replace(/\s+$/, '');
+        if (searchInput) {
+            $.ajax ({
+                Type: 'GET',
+                url: "/shop/search_product",
+                data : {"searchInput":searchInput},
+                success: function (response) {
+                    if(response.product[0]){
+                        console.log(response.product)
+                        var product = document.getElementsByClassName('product-link')[0];
+                        $("#products_field").empty()
+                        $(".page_num").remove()
+                        for(var i in response.product){
+                            var clone = product.cloneNode(true);
+                            clone.href = "/shop/view_product/" + response.product[i].product_id;
+                            console.log(response.product[i].name)
+                            clone.getElementsByClassName("product-name")[0].innerHTML = response.product[i].name;
+                            clone.getElementsByClassName("product-price")[0].innerHTML = response.product[i].price + "$";
+                            clone.getElementsByClassName("product-image")[0].src = "/media/" + response.product[i].main_image;
+                            $("#products_field").append(clone)
+                            $("#loading_message_wrap").text("")
+                        }
+                    }else{
+                        var para = document.createElement("p");
+                        para.innerText = "couldn't find the product you're looking for ";
+                        para.id = "not_found_text";
+                        $("#dropdown").after(para);
+                        $("#loading_message_wrap").text("")
                     }
-                }else{
-                    var para = document.createElement("p");
-                    para.innerText = "couldn't find the product you're looking for ";
-                    para.id = "not_found_text";
-                    $("#dropdown").after(para);
                 }
-            }
-        });
-    };
+            });
+        }
+    }, 1000);
 });
+
+
+// const searchButton = document.getElementById('search_button');
+
+// searchButton.addEventListener("click", function(){
+
+//     var notFoundText = document.getElementById("not_found_text")
+//     if(notFoundText){
+//         notFoundText.remove()
+//     }
+//     let searchInput = document.getElementById('search_input').value
+//     searchInput = searchInput.replace(/^\s+/, '').replace(/\s+$/, '');
+
+//     if (searchInput) {
+//         $.ajax ({
+//             Type: 'GET',
+//             url: "/shop/search_product",
+//             data : {"searchInput":searchInput},
+//             success: function (response) {
+//                 if(response.product[0]){
+//                     console.log(response.product)
+//                     var product = document.getElementsByClassName('product-link')[0];
+//                     $("#products_field").empty()
+//                     $(".page_num").remove()
+//                     for(var i in response.product){
+//                         var clone = product.cloneNode(true);
+//                         clone.href = "/shop/view_product/" + response.product[i].product_id;
+//                         console.log(response.product[i].name)
+//                         clone.getElementsByClassName("product-name")[0].innerHTML = response.product[i].name;
+//                         clone.getElementsByClassName("product-price")[0].innerHTML = response.product[i].price + "$";
+//                         clone.getElementsByClassName("product-image")[0].src = "/media/" + response.product[i].main_image;
+//                         $("#products_field").append(clone)
+//                     }
+//                 }else{
+//                     var para = document.createElement("p");
+//                     para.innerText = "couldn't find the product you're looking for ";
+//                     para.id = "not_found_text";
+//                     $("#dropdown").after(para);
+//                 }
+//             }
+//         });
+//     };
+// });

@@ -5,8 +5,9 @@ from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError 
 from django.core.paginator import Paginator
 
 from .serializers import *
@@ -26,7 +27,6 @@ def dashboard(request):
 def admin_panel(request):
 
     coupons = Coupons.objects.all()
-    print("===============================================", coupons)
     products = Products.objects.all().order_by('-created_on')
     
     data = {
@@ -80,14 +80,11 @@ def admin_panel_edit(request, product_id):
         products_categories = ProductsCategory.objects.filter(product=product)
 
         product_form = ProductForm(request.POST, request.FILES, instance=product)
-        # pictures_form = PicturesForm(request.POST, request.FILES)
 
         category_list = request.POST.getlist("category")
-        print(category_list)
 
         if product_form.is_valid():
             if request.FILES.get("main_image"):
-                print("has image")
                 if validate_file_extension(request.FILES.get("main_image")):
                     product_form.save()
                 else:
@@ -95,7 +92,6 @@ def admin_panel_edit(request, product_id):
                     return render(request, 'users/admin_panel_edit.html', error)
 
             else:
-                print("no has image")
                 product_form.save()
 
         if request.FILES.getlist("image"):
@@ -121,38 +117,7 @@ def admin_panel_edit(request, product_id):
                 ProductsCategory.objects.create(category=category, product=product)
 
         return redirect(admin_panel)
-        # if product_form.is_valid() and validate_file_extension(request.FILES.get("main_image")):
-        #     try:
-        #         product = product_form.save()
-        #         if len(category_list) > 0:
-        #             for i in category_list:
-        #                 if check_category(i):
-        #                     category = Category.objects.get(category=i)
-        #                     ProductsCategory.objects.create(category=category, product=product)
-        #                 else:
-        #                     category = Category.objects.create(category=i)
-        #                     ProductsCategory.objects.create(category=category, product=product)
-        #         if pictures_form:
-        #                 for image in request.FILES.getlist("image"):
-        #                     if validate_file_extension(image):
-        #                         Pictures.objects.create(image=image, product=product)
-        #                         # doesn't work for no f reason
-        #                         # picture = pictures_form.save(False)
-        #                         # picture.image = image
-        #                         # picture.product = product
-        #                         # picture.save()
-        #                     else:
-        #                         error = {"error": "invalid extra picture extension"}
-        #                         return render(request, 'add_product.html', error)
-        #         return redirect(admin_panel)
-        #     except Exception as e:
-        #         print(e)
-        # else:
-        #     print("++++++++++++++++++++",product_form.errors)
-        #     error = {"error":"invalid product info"}
-        #     return render(request, 'add_product.html', error)
-        # return render(request, "users/admin_panel_edit.html", data)
-
+ 
     if request.method == "GET":
 
         product = Products.objects.get(product_id=product_id)
@@ -182,10 +147,24 @@ def admin_panel_edit(request, product_id):
             "pictures": pictures,
         }
 
-        print(finalcategorys)
         return render(request, "users/admin_panel_edit.html", data)
 
 def register(request):
+    if request.method == "POST":
+        custom_register = CustomRegister(request.POST)
+        account_details_form = AccountDetailsForm(request.POST)
+
+        try:
+            if custom_register.is_valid():
+                custom_register_instance = custom_register.save()
+                AccountDetails.objects.create(user=custom_register_instance, address=request.POST.get("address"))
+                login(request, custom_register_instance)
+                return redirect("shop") 
+            else:
+                messages.error(request, custom_register.errors)
+                return render(request, "registration/register.html") 
+        except Exception as e:
+            print(e)
     if request.method == "GET":
         custom_register = CustomRegister()
         account_details_form = AccountDetailsForm()
@@ -194,26 +173,8 @@ def register(request):
             "custom_register":custom_register,
             "account_details_form":account_details_form,
         }
-        return render(request, "registration/register.html", data)
-    if request.method == "POST":
-        custom_register = CustomRegister(request.POST)
-        account_details_form = AccountDetailsForm(request.POST)
-
-        try:
-            if custom_register.is_valid():
-                custom_register_instance = custom_register.save()
-                print("ok1")
-                AccountDetails.objects.create(user=custom_register_instance, address=request.POST.get("address"))
-                print("ok2")
-                login(request, custom_register_instance)
-                print("ok3")
-
-        except Exception as e:
-            print(e)
-
-        print("ok4")
-
-        return redirect(reverse('shop'))
+        return render(request, "registration/register.html", data) 
+    # return HttpResponse(status=204)
 
 @login_required(login_url='/users/accounts/login/')
 def cart(request):
@@ -238,7 +199,6 @@ def cart(request):
             "products_in_cart": products_in_cart,
             "users_address": users_address,
             "total_price": total_price,
-            # "pre_orders_form": pre_orders_form,
             "has_ordered": has_ordered,
             "ongoing_order_id": ongoing_order_id,
         }
@@ -286,15 +246,15 @@ def check_coupon(request):
     try:
         coupon = Coupons.objects.get(coupon_code=entered_coupon)
         if coupon:
-             if coupon.valid_num_of_use >= 1:
-                 stat = True
-                 percent = int(coupon.percent)
-                 x = 100 - percent
-                 total = abs(float(total)*x/100)
-                 couponserialized = CouponsSerializers(coupon).data
-             else:
-                 couponserialized = "this coupon is used out!"
-                 stat = "-1"
+            #  if coupon.valid_num_of_use >= 1:
+            stat = True
+            percent = int(coupon.percent)
+            x = 100 - percent
+            total = abs(float(total)*x/100)
+            couponserialized = CouponsSerializers(coupon).data
+            #  else:
+            #      couponserialized = "this coupon is used out!"
+            #      stat = "-1"
     except ObjectDoesNotExist:
         couponserialized = "invalid coupon!"
         stat = "-2"
@@ -331,7 +291,6 @@ def add_coupon(request):
 
 @login_required(login_url='/users/accounts/login/')
 def set_pre_order(request):
-        print("POST")
         order_exists = False
         try:
             users_order = Orders.objects.filter(user=request.user,)
@@ -342,9 +301,7 @@ def set_pre_order(request):
                     order_exists = True
         except ObjectDoesNotExist:
             order_exists = False
-        print(order_exists)
         if not order_exists:
-            print("POST1")
             orders_payment_method = request.GET.get("payment_method")
             total = 0
             products_in_cart = UserProduct_Cart.objects.filter(user=request.user, stat="in_cart")
@@ -361,7 +318,6 @@ def set_pre_order(request):
                 i.stat = "in_order"
                 i.order = order
                 i.save()
-            print(order.order)
             return JsonResponse({
                 "redirect": "set_order",
                 "order": order.order,
@@ -369,7 +325,6 @@ def set_pre_order(request):
         else:
             return JsonResponse({"error": "you can only have one ongoing order"})
 
-        print("else")
         return redirect("cart")
 
 
@@ -393,18 +348,17 @@ def set_order(request, order_id):
         users_order_details.description = request.POST.get("description")
         if request.POST.get("used_coupon"):
             the_used_coupon = Coupons.objects.get(coupon=request.POST.get("used_coupon"))
-            if the_used_coupon.valid_num_of_use >= 1:
-                percent = 100 - int(the_used_coupon.percent)
-                new_total = request.POST.get("total")*percent/100
-                users_order_details.used_coupon = request.POST.get("used_coupon")
-                users_order_details.total = new_total
+            # if the_used_coupon.valid_num_of_use >= 1:
+            percent = 100 - int(the_used_coupon.percent)
+            new_total = request.POST.get("total")*percent/100
+            users_order_details.used_coupon = request.POST.get("used_coupon")
+            users_order_details.total = new_total
 
-                return JsonResponse({"ok":"ok"})
+            return JsonResponse({"ok":"ok"})
 
 
 @login_required(login_url='/users/accounts/login/')
 def complete_order(request, order_id):
-    print(order_id)
     if request.method == "GET":
         used_coupon = request.GET.get("coupon")
         try:
@@ -476,7 +430,6 @@ def edit_address(request):
         user = AccountDetails.objects.get(user=request.user)
         user.address = new_address
         user.save()
-        print(request.POST.get("next"))
         return redirect('profile')
     else:
         address_form = AccountDetailsForm()

@@ -9,11 +9,12 @@
 <link rel="stylesheet" type="text/css" href="{%  static  'css/shop.css'  %}" />
 {% endblock %}
 {% block content %}
-<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+<body class="bg_repeat" style="background-image: url({% static 'images/icon_grid.svg' %});">
     <div class="disable"></div>
     <div class="filter">
+        <span id="loading_message_wrap"></span>
         <input id="search_input" class="search" type="text" placeholder="Search.." />
-        <button id="search_button" class="search_button" type="submit"><i class="fa fa-search"></i></button>
+<!--    <button id="search_button" class="search_button" type="submit"><i class="fa fa-search"></i></button> -->
         <div id="dropdown" class="dropdown">
 <!--    so that it would count as one element in the grid-->
             <button id="category_btn"><p style="font-size: 14px;">categories</p><i class="fa fa-arrow-down"  style="margin: auto;"></i></button>

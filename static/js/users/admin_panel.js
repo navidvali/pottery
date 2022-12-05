@@ -9,7 +9,7 @@ function delete_product (product_id) {
 
 
 $(document).ready(function(){
-//     setInterval(function(){
+    setInterval(function(){
         console.log("1")
         $.ajax({
             Type: 'GET',
@@ -35,7 +35,7 @@ $(document).ready(function(){
             })
             }
         })
-//     },1000)
+    },1000)
 });
 
 console.log("0")

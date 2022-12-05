@@ -17,11 +17,16 @@
     <link rel="stylesheet" href='{%  static  "font-awesome/css/font-awesome.min.css"  %}'>
 </head>
 <body>
+    <div class="m_list">
+        {% if messages %}
+            pls resolve the folloing errors :
+            {% for m in messages %}
+                <span>{{ m }}</span>
+            {% endfor %}
+        {% endif %}
+    </div>
     <div class="bg"></div>
         <div class="wrap">
-            <div class="form_wrap">
-                {{ form.errors }}
-                {{ form.non_field_errors }}
                 <form action="/users/register/" method="POST" enctype="multipart/form-data" class="form">
                     {% csrf_token %}
                     <div class="box">
@@ -51,8 +56,9 @@
                 <div class="links_wrap">
                     <a href="{% url 'login' %}" class="link">back to login</a>
                 </div>
+                <img src="{{ static }}/static/images/pots.jpg" alt="cups" class="image">
             </div>
-            <img src="{{ static }}/static/images/pots.jpg" alt="cups" class="image">
+            <!-- <img src="{{ static }}/static/images/pots.jpg" alt="cups" class="image"> -->
         </div>
 </body>
 </html>

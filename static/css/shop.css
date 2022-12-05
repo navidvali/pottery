@@ -1,10 +1,12 @@
-
+.bg_repeat{
+  background-repeat: repeat;
+}
 .filter {
   height: 50px;
   background-color: transparent;
   position: relative;
   display: grid;
-  grid-template-columns: 30% 10% 10% 50%;
+  grid-template-columns: 30% 10% 50%;
 
 }
 
@@ -32,7 +34,7 @@
   color: black;
   background-color: #a6dad9;
   height: 100%;
-  width: 100%;
+  width: 500px;
   margin: 0px;
   padding: 0px;
   padding-left: 5px;
@@ -250,4 +252,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#loading_message_wrap{
+    position: absolute;
+    left: 20px;
+    top: 60px;
 }
