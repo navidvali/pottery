@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="width" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="project.apps.new_app.models.Course.objects" />
+          <option value="apps.new_post.models.File.objects" />
+          <option value="apps.facebook.models.File.objects" />
+          <option value="apps.facebook.models.Invites_received.objects" />
+          <option value="apps.facebook.models.Message.objects" />
+          <option value="apps.facebook.models.Friends.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
