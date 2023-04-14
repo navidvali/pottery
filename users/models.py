@@ -12,6 +12,7 @@ class Coupons(models.Model):
     percent = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
     created_on = models.DateTimeField(blank=True, default=datetime.now)
 
+
 class Orders(models.Model):
     order = models.AutoField(primary_key=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)

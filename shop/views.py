@@ -19,25 +19,16 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
-from api.serializers import ProductsSerializer
+from .serializers import ProductsSerializer
 
 from users.models import *
+
 
 def index(request):
     return render(request, 'index.html')
 
-# @api_view(('GET',))
-# @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+
 def shop(request):
-    # https://www.youtube.com/watch?v=N-PB-HMFmdo
-    # products = Products.objects.order_by("-created_on")
-
-    # p = Paginator(Products.objects.order_by("-created_on"), 6)
-    # page = request.GET.get('page')
-    # products_paginated = p.get_page(page)
-    # serializer = ProductsSerializer(products_paginated, many=True)
-
-    # return Response(serializer.data, template_name='shop.html')
     p = Paginator(Products.objects.order_by("-created_on"), 6)
     page = request.GET.get('page')
     products_paginated = p.get_page(page)
@@ -51,9 +42,7 @@ def shop(request):
         c = model_to_dict(c)
         c["number"] = num_of_category
         categories_list.append(c)
-        # category_num = c.category + " "+"(" + str(num_of_category)+ ")"
-        # c.category = category_num
-    
+
     num_of_orders = 0
     if request.user.is_authenticated:
         users_orders = UserProduct_Cart.objects.filter(user=request.user, stat="in_cart")
@@ -63,7 +52,6 @@ def shop(request):
     if not categories:
         unavailable = True
     data = {
-        #'products': products,
         'products_paginated': products_paginated,
         'categories': categories_list,
         'unavailable': unavailable,
@@ -85,7 +73,6 @@ def search_product(request):
 
 def category_filter(request):
     category_asked = request.GET.getlist("SelectedCategories[]")
-    print("+++++++++++++++++++++=",category_asked)
     filtered_products = []
     for c in category_asked:
         productscategory = ProductsCategory.objects.filter(category=c)
@@ -97,34 +84,7 @@ def category_filter(request):
             else:
                 filtered_products.append(product)
 
-    print("===========================",filtered_products)
-
     return JsonResponse({"filtered_products": filtered_products})
-    # if not category_asked:
-    #     return shop(request)
-
-    # t = render_to_string("filtered_shop.html", {"data":filtered_products})
-
-    # https://www.youtube.com/watch?v=27lFCJrmWP4&list=PLgnySyq8qZmrxJvJbZC1eb7PD4bu0a-sB&index=19
-
-    # if request.method == "GET":
-    #     category_asked = request.GET.get("category")
-    #     print("+++++++++++++++++++++++",category_asked)
-    #     categorys = Category.objects.filter(category = category_asked)[0].category_id
-    #     print("======================",categorys)
-    #     products = Products.objects.all()
-    #     products_dict = {}
-    #     # for c in categorys:
-    #     # products_id = ProductsCategory.objects.filter(category = categorys)[0].product
-    #     products_dict[1] = ProductsCategory.objects.filter(category = categorys)[0].product
-    #
-    #     # products = Products.objects.
-    #     # p = Paginator(Products.objects.filter(category = category_asked))
-    #     # page = request.GET.get('page')
-    #     # products_paginated = p.get_page(page)
-    #
-    #     # return render(request, 'shop.html', products_paginated)
-    #     return render(request, 'shop.html', products_dict)
 
 
 def check_category(category):
@@ -163,11 +123,6 @@ def add_product(request):
                         for image in request.FILES.getlist("image"):
                             if validate_file_extension(image):
                                 Pictures.objects.create(image=image, product=product)
-                                # doesn't work for no f reason
-                                # picture = pictures_form.save(False)
-                                # picture.image = image
-                                # picture.product = product
-                                # picture.save()
                             else:
                                 error = {"error": "invalid extra picture extension"}
                                 return render(request, 'add_product.html', error)
