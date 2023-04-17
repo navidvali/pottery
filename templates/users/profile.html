@@ -12,17 +12,17 @@
 <body style="background-image: url({% static 'images/icon_grid.svg' %});">
 <a href="{% url 'logout' %}" class="logout"><i class="fa fa-sign-out fa-2x"></i></a>
 <div class="Wrap">
+    <div class="main_wrap">
+        <p class="field">hello {{ user }}!</p>
+        <p class="field">email : {{ user.email }}</p>
+        <p class="field address">address : {{ address }}</p>
+    </div>
     <div class="side_wrap">
         <div class="list">
             <a href="{% url 'receipt' %}" class="list_item" id="1">history</a>
             <a href="{% url 'edit_address' %}" class="list_item" id="2">change address</a>
             <a href="{% url 'password_change' %}" class="list_item" id="3">change password</a>
         </div>
-    </div>
-    <div class="main_wrap">
-        <p class="field">hello : {{ user }}</p>
-        <p class="field">email : {{ user.email }}</p>
-        <p class="field address">address : {{ address }}</p>
     </div>
 </div>
 </body>
