@@ -299,4 +299,12 @@
         width: 90%;
         justify-self: center;
     }
+    #loading_message_wrap {
+        top: 50px;
+    }
+    #not_found_text{
+        position: absolute;
+        font-size: 10px;
+        margin: 0;
+    }
 }
