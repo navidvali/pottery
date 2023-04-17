@@ -13,49 +13,42 @@
     {% if user.is_authenticated %}
         <a href="{% url 'cart' %}" class="cart"><i class="fa fa-shopping-cart fa-2x fa-flip-horizontal"></i><div id="num_of_orders" class="num_of_orders">{{ num_of_all_orders }}</div></a>
     {% endif %}
-    <div class="left">
-        <div class="name up">
-            <h3>{{ product.name|safe }}</h3>
-        </div>
-        <div class="description up">
-            {{ product.description|safe }}
-        </div>
-        <div class="price up">
-            <h3>{{ product.price|safe }}$</h3>
-        </div>
-        {% if user.is_authenticated %}
-            {% if not users_orders_num %}
-                <div id="{{ product.product_id|safe }}" class="add_to_cart">
-                    add to cart
-            <!--            {% if user.is_authenticated %}-->
-            <!--                (<span id="num_in_cart">{{ users_orders_num }}</span>)-->
-            <!--            {% endif %}-->
-                </div>
-            {% else %}
-                <p class="added2">added to cart!</p>
+    <div class="wrap">
+        <div class="left">
+            <h3 class="name">{{ product.name|safe }}</h3>
+            <div class="description">
+                {{ product.description|safe }}
+            </div>
+            <h3 class="price">{{ product.price|safe }}$</h3>
+            {% if user.is_authenticated %}
+                {% if not users_orders_num %}
+                    <div id="{{ product.product_id|safe }}" class="add_to_cart">
+                        add to cart
+                    </div>
+                {% else %}
+                    <p class="added2">added to cart!</p>
+                {% endif %}
+                <p class="added hide">added to cart!</p>
             {% endif %}
-            <p class="added hide">added to cart!</p>
-        {% endif %}
-        <div class="categorys">
-            {% for category in category %}
-                <div class="category up">
-                    <span id="{{ category.category.category_id }}" class="search_link">{{ category.category.category|safe }}</span>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="right">
-        <div>
-            <img  class="main_image" src="{{ MEDIA_URL }}{{ product.main_image|safe }}" alt="{{ product.main_image|safe }}" id="main_img">
-        </div>
-        <div class="slider">
-            <i class="fa fa-caret-left fa-2x arrow" aria-hidden="true" id="leftarrow"></i>
-            <div class="sliders_images" id="sliders_images">
-                {% for image in images %}
-                        <img class="extra_image" src="{{ MEDIA_URL }}{{ image.image|safe }}" alt="{{ image.image|safe }}">
+            <div class="categorys">
+                {% for category in category %}
+                    <div class="category">
+                        <span id="{{ category.category.category_id }}" class="search_link">{{ category.category.category|safe }}</span>
+                    </div>
                 {% endfor %}
             </div>
-            <i class="fa fa-caret-right fa-2x arrow" aria-hidden="true" id="rightarrow"></i>
+        </div>
+        <div class="right">
+            <img  class="main_image" src="{{ MEDIA_URL }}{{ product.main_image|safe }}" alt="{{ product.main_image|safe }}" id="main_img">
+            <div class="slider">
+                <i class="fa fa-caret-left fa-2x arrow" aria-hidden="true" id="leftarrow"></i>
+                <div class="sliders_images" id="sliders_images">
+                    {% for image in images %}
+                            <img class="extra_image" src="{{ MEDIA_URL }}{{ image.image|safe }}" alt="{{ image.image|safe }}">
+                    {% endfor %}
+                </div>
+                <i class="fa fa-caret-right fa-2x arrow" aria-hidden="true" id="rightarrow"></i>
+            </div>
         </div>
     </div>
 {% endblock %}

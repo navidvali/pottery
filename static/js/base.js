@@ -3,7 +3,7 @@ const close = document.getElementById("close_menu")
 const wrap = document.getElementById("wrap_nav_button")
 
 open.addEventListener("click", ()=>{
-    wrap.style.display = "grid";
+    wrap.style.display = "flex";
     open.style.display = "none";
     close.style.display = "block";
 })

@@ -1,32 +1,42 @@
-
-div{
-  font-size: 30px;
+body{
+    font-size: 30px;
+}
+.wrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px 100px;
 }
 
 .left{
-  float: left;
-  width: 45%;
-  height: 600px;
-  margin-left: 60px;
+  display: grid;
+  grid-template-rows: 10% 40% 10% 10% 30%;
+  height: 700px;
 }
 
-.up{
-  margin: 50px;
+.name{
+    grid-row: 1/ span 1;
+    margin: 0;
+}
+.description{
+    grid-row: 2/ span 1;
 }
 
 .price{
-  margin-top: 100px;
+    grid-row: 3/ span 1;
+    margin: 0;
 }
 
 .categorys{
-  margin-left: 50px;
+  grid-row: 5 / span 1;
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
 }
 
 .category{
-  width: auto;
-  padding: 0 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
   border: none;
   border-radius: 100px;
   margin: 10px;
@@ -34,24 +44,21 @@ div{
 }
 
 .right{
-  float: right;
-  width: 50%;
-  height: 600px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 80% 20%;
+  height: 700px;
 }
 
-.extra_image,
 .main_image{
-  margin: 5px;
-}
-.main_image{
-  width: 450px;
-  height: 450px;
-  margin-top: 50px;
-  margin-left: 0px;
+  grid-row: 1 / span 1;
+  width: 80%;
+  justify-self: center;
 }
 .extra_image{
-  width: 125px;
-  height: 120px;
+  width: 30%;
+  height: 30%;
+  margin: 0 1%;
 }
 
 .extra_image:hover {
@@ -59,14 +66,17 @@ div{
 }
 
 .slider{
-  width: 450px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-self: center;
+  box-sizing: border-box;
+  padding: 0 10%;
 }
 
 .sliders_images{
-  width: 430px;
+  width: 90%;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -85,8 +95,8 @@ div{
 }
 
 .add_to_cart{
+  grid-row: 4/ span 1;
   font-size: 24px;
-  margin: 50px;
   display: flex;
   background: rgb(65 185 199);
   border-radius: 10px;
@@ -100,10 +110,10 @@ div{
 }
 
 .cart{
+  font-size: 20px;
   margin: 0 10px 0 auto;
   color: black;
   text-decoration: none;
-  gap: 5px;
   position: absolute;
   right: 20px;
   display: flex;
@@ -119,13 +129,12 @@ div{
 
 .added{
   display: none;
-  margin: 0 0 50px 50px;
+  align-self: center;
 }
 
 .added2{
-  margin: 0 0 50px 50px;
+  align-self: center;
 }
-
 
 .hide{
   display: none;
@@ -143,4 +152,65 @@ div{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 800px){
+    body{
+        font-size: 18px;
+    }
+    .open_menu,
+    .close_menu{
+        font-size: 16px;
+    }
+
+    .cart{
+      font-size: 16px;
+      margin: 0;
+      right: 10px;
+      width: 10%;
+    }
+    .wrap{
+      margin: 20px 10px;
+    }
+    .left{
+        height: 400px;
+    }
+    .right{
+        height: 250px;
+    }
+    .add_to_cart{
+      font-size: 16px;
+      width: 70%;
+      height: 100%;
+    }
+
+    .category {
+      font-size: 14px;
+      width: fit-content;
+      height: fit-content;
+      padding: 5px;
+      border: none;
+      border-radius: 10px;
+      margin: 0 5px;
+      background-color: #5f9ea0;
+    }
+    .main_image{
+      width: 100%;
+    }
+    .arrow{
+        width: 0;
+        opacity: 0;
+    }
+    .slider{
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+    .sliders_images{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .extra_image{
+        width: 40%;
+    }
 }

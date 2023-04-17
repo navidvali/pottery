@@ -202,10 +202,10 @@
 }
 
 .cart{
+  font-size: 20px;
   margin: 0 10px 0 auto;
   color: black;
   text-decoration: none;
-  gap: 5px;
   position: absolute;
   right: 20px;
   display: flex;
