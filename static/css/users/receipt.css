@@ -1,8 +1,6 @@
 .Wrap{
     width: 1400px;
     height: 560px;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(1px);
     display: flex;
     margin: 50px auto 0 auto;
     border-radius: 50px;
@@ -35,4 +33,31 @@
 .grid_orders_wrap{
     display: grid;
     grid-template-columns: 300px 300px;
+}
+
+@media(max-width: 800px){
+    .in_line_orders_wrap,
+    .delivered_orders_wrap{
+        width: 100%;
+        height: fit-content;
+        min-height: 50px;
+        border-radius: 10px;
+        background-color: #e0eef9;
+        overflow: auto;
+        margin: 0 0 10px 0;
+    }
+    .Wrap{
+        width: 100vw;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0 0 0;
+    }
+    .title{
+        width: fit-content;
+        margin: 10px 0 0 10px;
+    }
+    .grid_orders_wrap{
+        grid-template-columns: 100%;
+    }
 }

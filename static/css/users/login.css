@@ -110,3 +110,66 @@ body{
     color: red;
     margin-left: 5px;
 }
+
+@media(max-width: 800px){
+
+    .res_bg{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-image: url(../../images/cups.jpg);
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .bg,
+    .image{
+        display: none;
+    }
+
+    .form_wrap,
+    .submit_button,
+    .address_input,
+    .box{
+        position: static;
+    }
+
+    .wrap{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    .form_wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+    .form{
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .name,
+    .input,
+    .submit_button,
+    .links_wrap,
+    .label{
+        margin: 0;
+    }
+    .links_wrap{
+        width: 100%;
+    }
+    .input_wrap{
+        margin: 10px 0;
+    }
+}
