@@ -17,3 +17,12 @@
     text-decoration: none;
     color: black;
 }
+
+@media(max-width: 800px){
+    .Wrap{
+        box-sizing: border-box;
+        margin: 2vw;
+        width: 96vw;
+    }
+
+}

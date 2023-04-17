@@ -26,7 +26,7 @@ document.querySelector(".submit_button").addEventListener("click", function() {
                     document.getElementById("total").innerHTML = response.total
                     document.getElementById("coupon").style.display = "none"
                     document.getElementById("submit_button").style.display = "none"
-                    document.getElementById("cancel_coupon").style.display = "inline-block"
+                    document.getElementById("cancel_coupon").style.display = "flex"
                     var coupon_used = document.createElement("span");
                     coupon_used.innerHTML = response.coupon.coupon_code + "-" +  response.coupon.percent + "%"
                     coupon_used.setAttribute("class", "coupon_used");

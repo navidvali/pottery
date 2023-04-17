@@ -149,3 +149,95 @@
     display: inline-block;
     margin: 0 0 0 10px;
 }
+
+.res_cancel{
+    display: none;
+}
+
+@media(max-width: 800px){
+    .Wrap{
+        flex-direction: column;
+        margin: 10px 0 0 0;
+        background-color: unset;
+    }
+
+    .order_summary{
+        width: 100%;
+    }
+
+    .method,
+    .status,
+    .name{
+        border-radius: 10px;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .name{
+        line-height: 50px;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .address{
+        width: 80%;
+        height: 140px;
+        line-height: 25px;
+        text-overflow: ellipsis;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+    }
+    .coupon_wrap{
+        width: 100vw;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .label{
+        margin: 10px 0 10px 10px;
+        font-size: 18px;
+        width: fit-content;
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+    }
+    .coupon-input{
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+    }
+    .submit_button{
+        margin: 0 10px;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+    }
+    .extra_detail{
+        width: 100vw;
+    }
+    .res_cancel{
+        display: block;
+    }
+
+    .cancel_coupon{
+        flex-direction: row;
+        align-items: center;
+    }
+    .des_input{
+        box-sizing: border-box;
+        width: 90%;
+        margin: 0 5%;
+    }
+    .des_wrap{
+        margin: 0;
+        width: 100vw;
+    }
+    .products_wrap{
+        width: fit-content;
+    }
+}

@@ -12,7 +12,7 @@
 <body style="background-image: url({% static 'images/icon_grid.svg' %});">
     <div class="Wrap">
         <div class="order_summary">
-            <p class="name">order will be sent in the name: {{ users_order_details.user }}</p>
+            <p class="name">name: {{ users_order_details.user }}</p>
             <p class="method">payment method: {{ users_order_details.payment_method }}</p>
             <p class="status">payment status: {{ users_order_details.payment_stat }}</p>
             <p class="address">address: {{ address }}</p>
@@ -23,7 +23,7 @@
                 <input type="text" name="coupon" maxlength="20" id="coupon" class="coupon-input">
                 <div class="submit_button" id="submit_button">Submit</div>
                 <span class="total">total = <b id="total">{{ users_order_details.total }}</b>$</span>
-                <div class="cancel_coupon" id="cancel_coupon"><i class="fa fa-times fa-2x"></i></div>
+                <div class="cancel_coupon" id="cancel_coupon"><i class="fa fa-times fa-2x"></i><span class="res_cancel">canel coupon</span></div>
             </div>
             <div class="des_wrap">
                 <label for="id_description" class="label">Description:</label>
