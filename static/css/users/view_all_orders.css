@@ -63,3 +63,36 @@
     width: 150px;
     height: 50px;
 }
+
+@media(max-width: 800px){
+    .Wrap{
+        width: 100vw;
+        display: flex;
+        margin: 0;
+        flex-direction: column;
+    }
+    .back_btn{
+        margin: 5px 0 5px 5px;
+    }
+    .orders_wrap{
+        margin: 10px 0;
+        border-radius: 0;
+    }
+
+    .area1{
+        width: 40%;
+    }
+    .area2{
+        width: 60%;
+    }
+
+    .short_field{
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .long_field{
+        width: 100%;
+    }
+}

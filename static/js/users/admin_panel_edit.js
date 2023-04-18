@@ -32,8 +32,8 @@ const inpFile2 = document.getElementById('id_image');
 const container2 = document.getElementById('extra_image_preview');
 //const previewImage2 = document.querySelector('.extra_preview_img');
 const wrapBefore = document.querySelector('.before_upload');
-const wrapAfter = document.querySelector('.after_upload');
-const images_container = document.querySelector('.images_container');
+const wrapAfter = document.querySelector('#after_upload');
+const images_container = document.querySelector('#images_container');
 const second_images_container = document.getElementById('second_images_container')
 const previewText2 = document.querySelector('.extra_preview_span');
 const cancelBtn2 = document.getElementById('cancel-btn2');
@@ -90,6 +90,7 @@ inpFile2.addEventListener("change", function() {
         document.getElementById("images_container").style.display = "grid";
         previewText2.style.display = "block";
         cancelBtn2.style.display = "none";
+        wrapAfter.style.display = "none";
 //        wrapAfter.style.display = "none";
         wrapBefore.style.display = "flex";
 
@@ -129,19 +130,24 @@ inpFile2.addEventListener("change", function() {
 
 var expanded = false;
 const select = document.getElementById("select");
+const plusButton = document.getElementById("new_option")
+const addButton = document.getElementById("add_category")
 var checkboxes = document.getElementById("checkboxes");
 
 select.addEventListener("click", function() {
     if (!expanded) {
       checkboxes.style.display = "block";
+      plusButton.style.display = "none";
+      addButton.style.display = "none";
       expanded = true;
     } else {
       checkboxes.style.display = "none";
+      plusButton.style.display = "block";
+      addButton.style.display = "block";
       expanded = false;
     }
 });
 
-const addButton = document.getElementById("add_category")
 const available = document.getElementById("available")
 var repeated_txt = false;
 
@@ -182,6 +188,7 @@ addButton.addEventListener("click", function(){
         newOpt.setAttribute("class", "options_txt");
 
         newcheck.setAttribute("type", "checkbox");
+        newcheck.setAttribute("checked", "");
         newcheck.setAttribute("value", optText);
         newcheck.setAttribute("name", "category");
         newcheck.setAttribute("class", "checkbox_cat");

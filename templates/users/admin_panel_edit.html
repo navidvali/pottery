@@ -64,7 +64,7 @@
             <input type="submit" class="submit_button">
         </div>
         <div class="right">
-            <div class="field">
+            <div class="field res">
                 <input accept="image/*" type="file" name="main_image" id="id_main_image" class="file_field" style="opacity: 0;">
                 <div class="main_image_preview">
                     <div id="cancel-btn"><i class="fa fa-times fa-2x"></i></div>
@@ -72,23 +72,28 @@
                     <span style="z-index: 2; font-size: 35px;" class="main_preview_span">Choose an other image</span>
                 </div>
             </div>
-            <div class="field">
+            <div class="field res extra">
                 <div class="extra_image_preview">
-                    <div class="after_upload">
-                        <h class="note1">Uploaded files</h>
+                    <div class="after_upload" id="after_upload">
+                        <h class="note1">files Uploaded!</h>
                         <div id="cancel-btn2"><i class="fa fa-times fa-2x"></i></div>
+                        <div class="second_images_container images_container" id="second_images_container"></div>
                     </div>
                     <div class="images_container" id="images_container">
-                        {% for picture in pictures %}
-                            <div class="holder">
-                                <img class="extra_preview_img" src="{{ MEDIA_URL }}{{ picture.image }}">
-                                <div class="figcapholder">
-                                    <figcaption class="figcap">{{ picture.name }}</figcaption>
-                                </div>
-                             </div>
-                        {% endfor %}
+                        <h class="note1">Uploaded files</h>
+                        <div>
+                            {% for picture in pictures %}
+                                <div class="holder">
+                                    <div>
+                                        <img class="extra_preview_img" src="{{ MEDIA_URL }}{{ picture.image }}">
+                                        <div class="figcapholder">
+                                            <figcaption class="figcap">{{ picture.name }}</figcaption>
+                                        </div>
+                                    </div>
+                                 </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="second_images_container images_container" id="second_images_container"></div>
                 </div>
                 <div class="test">
                     <div class="before_upload">

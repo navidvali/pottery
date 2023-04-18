@@ -116,19 +116,24 @@ inpFile2.addEventListener("change", function() {
 
 var expanded = false;
 const select = document.getElementById("select");
+const plusButton = document.getElementById("new_option")
+const addButton = document.getElementById("add_category")
 var checkboxes = document.getElementById("checkboxes");
 
 select.addEventListener("click", function() {
     if (!expanded) {
       checkboxes.style.display = "block";
+      plusButton.style.display = "none";
+      addButton.style.display = "none";
       expanded = true;
     } else {
       checkboxes.style.display = "none";
       expanded = false;
+      plusButton.style.display = "block";
+      addButton.style.display = "block";
     }
 });
 
-const addButton = document.getElementById("add_category")
 const available = document.getElementById("available")
 var repeated_txt = false;
 

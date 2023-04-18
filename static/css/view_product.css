@@ -19,6 +19,13 @@ body{
 }
 .description{
     grid-row: 2/ span 1;
+    overflow: hidden;
+    line-height: 100%;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .price{
@@ -176,7 +183,7 @@ body{
         height: 400px;
     }
     .right{
-        height: 250px;
+        height: 70%;
     }
     .add_to_cart{
       font-size: 16px;
@@ -199,6 +206,7 @@ body{
     }
     .arrow{
         width: 0;
+        height: 0;
         opacity: 0;
     }
     .slider{

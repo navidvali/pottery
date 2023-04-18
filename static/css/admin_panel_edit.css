@@ -16,15 +16,17 @@
 }
 
 .after_upload{
-    display: flex;
+    display: none;
     justify-content: center;
-    height: 40px;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 20% 80%;
 }
 
 #cancel-btn2{
     display: none;
-    margin-left: auto;
-    margin-right: 30px;
+    margin: 0;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
 }
 
 .extra_image_preview{
@@ -37,14 +39,19 @@
 
 .holder{
     display: inline-block;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
 }
 
 .images_container{
-    width: 440px;
-    height: 160px;
+    height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0;
+    display: grid;
+    grid-template-rows: 20% 80%;
 }
 
 .test{
@@ -71,4 +78,21 @@
 
 .second_images_container{
     display: none;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-template-rows: 100%;
+}
+
+.note1{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+@media only screen and (max-width: 800px){
+    .back_btn{
+        margin: 5px 0 5px 5px;
+    }
+    .main_preview_span{
+        text-align: center;
+    }
 }

@@ -108,3 +108,79 @@
 .view_all_orders{
     margin: 20px 0 0 0;
 }
+
+@media only screen and (max-width: 800px){
+    .Wrap{
+        width: 100vw;
+        flex-direction: column-reverse;
+    }
+
+    .add_coupon,
+    .add_product,
+    .view_all_orders{
+        height: 50px;
+        width: 80%;
+        align-self: center;
+    }
+
+
+    .products_wrap{
+        margin: 0 0 10px 0;
+        width: 100vw;
+        display: grid;
+        grid-template-columns: 30% 40% 30%;
+        grid-template-rows: 50% 50%;
+    }
+
+    .products_image{
+        grid-row: 1 / span 2;
+        grid-column: 1 / span 1;
+    }
+
+    .products_name{
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break;
+    }
+
+    .res_wrap{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .coupons_container{
+        display: flex;
+        flex-direction: column;
+        margin: 5px 0;
+        width: 100vw;
+    }
+
+    .add_coupon{
+        margin: 0;
+    }
+    .all_coupons_wrap{
+        align-self: center;
+        max-height: 400px;
+        height: fit-content;
+    }
+
+    .delete_btn,
+    .edit_btn {
+        width: 80px;
+        height: 35px;
+        margin-right: 0;
+    }
+    .edit_btn{
+        grid-row: 1 / span 1;
+        grid-column: 3 / span 1;
+    }
+    .delete_btn{
+        grid-row: 2 / span 1;
+        grid-column: 3 / span 1;
+    }
+}
