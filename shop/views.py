@@ -104,6 +104,8 @@ def check_category(category):
 
 
 def add_product(request):
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES)
         pictures_form = PicturesForm(request.POST, request.FILES)

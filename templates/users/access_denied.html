@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}pottery{% endblock %}
+
+{% block head_css %}
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/base.css'  %}" />
+<link rel="stylesheet" type="text/css" href="{%  static  '/css/users/thanks.css'  %}" />
+{% endblock %}
+{% block content %}
+<body style="background-image: url({% static 'images/icon_grid.svg' %});">
+<div class="Wrap" style="font-size: 90px;">access denied<a href="{% url 'shop' %}" class="link">back to shop</a></div>
+</body>
+{% endblock %}

@@ -23,9 +23,10 @@ from .models import *
 def dashboard(request):
     return render(request, "users/dashboard.html")
 
-
+@login_required(login_url='/users/accounts/login/')
 def admin_panel(request):
-
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     coupons = Coupons.objects.all()
     products = Products.objects.all().order_by('-created_on')
     
@@ -36,16 +37,18 @@ def admin_panel(request):
 
     return render(request, "users/admin_panel.html", data)
 
-
+@login_required(login_url='/users/accounts/login/')
 def admin_panel_products(request):
-
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     products = Products.objects.order_by('-created_on')
     productsserialized = ProductsSerializer(products, many=True).data
     return JsonResponse({"products": productsserialized})
 
-
+@login_required(login_url='/users/accounts/login/')
 def admin_panel_delete(request):
-
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     pk = request.GET.get("product_id")
     products = Products.objects.get(pk=pk).delete()
 
@@ -54,7 +57,6 @@ def admin_panel_delete(request):
     }
 
     return JsonResponse(data)
-
 
 def check_category(category):
     already_added = False
@@ -71,8 +73,10 @@ def check_category(category):
 
     return already_added
 
-
+@login_required(login_url='/users/accounts/login/')
 def admin_panel_edit(request, product_id):
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     if request.method == "POST":
 
         product = Products.objects.get(pk=product_id)
@@ -270,6 +274,8 @@ def check_coupon(request):
 
 @login_required(login_url='/users/accounts/login/')
 def add_coupon(request):
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     if request.method == "GET":
         couponsform = CouponsForm()
 
@@ -450,8 +456,10 @@ def profile(request):
 
     return render(request, "users/profile.html/", data)
 
-
+@login_required(login_url='/users/accounts/login/')
 def view_all_orders(request):
+    if not request.user.is_staff:
+        return render(request, "users/access_denied.html")
     o = Paginator(Orders.objects.order_by("-created_on"), 4)
     page = request.GET.get('page')
     orders_paginated = o.get_page(page)
