@@ -16,10 +16,13 @@
 }
 
 .after_upload{
+    width: 100%;
+    box-sizing: border-box;
     display: none;
     justify-content: center;
     grid-template-columns: 90% 10%;
     grid-template-rows: 20% 80%;
+    padding: 0 0 0 10px;
 }
 
 #cancel-btn2{
@@ -39,7 +42,6 @@
 
 .holder{
     display: inline-block;
-    grid-row: 2 / span 1;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
@@ -47,11 +49,12 @@
 
 .images_container{
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
     padding: 0;
     display: grid;
     grid-template-rows: 20% 80%;
+    grid-template-columns: none;
 }
 
 .test{
@@ -77,15 +80,29 @@
 }
 
 .second_images_container{
+    margin: 0;
     display: none;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    grid-template-rows: 100%;
+    grid-template-rows: none;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 .note1{
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
+}
+
+.wrap_holder{
+    width: 100%;
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 @media only screen and (max-width: 800px){
@@ -95,4 +112,12 @@
     .main_preview_span{
         text-align: center;
     }
+    .test{
+        right: 5%;
+        border-radius: 10px 0 0 10px;
+    }
+    .holder2{
+        height: 100%;
+    }
+
 }
